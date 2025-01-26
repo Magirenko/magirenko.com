@@ -4,6 +4,13 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1">
         <!-- title -->
         <title>Nueva pagina web de Magirenko!</title>
+        <meta property="description" content="Ahora Magirenko oficialmente tiene una pagina web!, En magirenko.com podras descargar nuestro software, habra un foro, etc!, Esta pagina va a mejorar poco a poco!">
+        <meta name="keywords" content="Tecnología, empresa, software, Magirenko, MagicM, Migue Magic Studios">
+        <meta name="author" content="Magirenko">
+        <meta property="og:title" content="Magirenko - inicio"/>
+        <meta property="og:description" content="Ahora Magirenko oficialmente tiene una pagina web!, En magirenko.com podras descargar nuestro software, habra un foro, etc!, Esta pagina va a mejorar poco a poco!"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:image" content="img.jpg"/>
         <style>
             .page {
                 padding: 0px;
@@ -11,7 +18,6 @@
                 color: white;
                 font-size: 25px;
             }
-
             .header-style14 {
                 position: fixed;
                 width: 100%;
@@ -19,7 +25,7 @@
             }
         </style>
         <!-- favicon -->
-        <link rel="shortcut icon" href="/images/icon/favicon.png">
+        <link rel="icon" href="/images/icon/favicon.png">
         <!-- animation -->
         <link rel="stylesheet" href="/css/animate.css">
         <!-- bootstrap -->
@@ -45,27 +51,39 @@
 
 
     <style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style>
+    <script id="PlaceTemplate" src="/js/template.js" template="/templates/noticia.html"></script>
+    <script id="header_and_footer" src="/js/header_and_footer.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", (event) => {
-            var request1 = new XMLHttpRequest();
-            request1.open('GET', 'title', false);
-            request1.send();
-            if (request1.status == 200) {
-                document.getElementById('title').innerHTML = request1.responseText;
-            } else {
-                document.getElementById('title').innerHTML = '?';
-            }
+            var title = document.getElementById("title");
+        var desc = document.getElementById("desc");
+        var creationdate = document.getElementById("creationdate");
+        var author = document.getElementById("author");
+        var img = document.getElementById("img");
 
-            var request2 = new XMLHttpRequest();
-            request2.open('GET', 'desc', false);
-            request2.send();
-            if (request2.status == 200) {
-                document.getElementById('desc').innerHTML = request2.responseText;
-            } else {
-                document.getElementById('desc').innerHTML = '?';
-            }
+        var req1 = new XMLHttpRequest();
+        req1.open("GET", "title", false);
+        req1.send();
+
+        var req2 = new XMLHttpRequest();
+        req2.open("GET", "desc", false);
+        req2.send();
+
+        var req3 = new XMLHttpRequest();
+        req3.open("GET", "creationdate", false);
+        req3.send();
+
+        var req4 = new XMLHttpRequest();
+        req4.open("GET", "author", false);
+        req4.send();
+
+        title.innerHTML = req1.responseText;
+        desc.innerHTML = req2.responseText;
+        creationdate.innerHTML = "Creado en " + req3.responseText;
+        author.innerHTML = "Escrito por " + req4.responseText;
+        img.src = "img.jpg";
         });
-     </script>
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", (event) => {
              for (let i = 0; i < 8; i++) {
@@ -103,143 +121,6 @@
              }
          document.getElementById("NoticeTemplate").remove();
         });
-     </script></head>
+    </script></head>
     <body style="color: white; background-color: rgb(27, 27, 27); font-family: 'Segoe UI';">
-
-        <div id="page" class="page"><header class="header-style14" id="header-section22">                
-            <nav class="navbar bg-black tz-header-bg no-margin shrink-header" style="border-color: rgb(112, 112, 112); background-color: rgb(0, 0, 0) !important;" id="ui-id-6">
-                <div class="container navigation-menu">
-                    <div class="row">
-                        <!-- logo -->
-                        <div class="col-md-3 col-sm-4 col-xs-7">
-                            <a href="/home" class="inner-link"><img alt="" src="/images/magirenko_logo.png" data-img-size="(W)163px X (H)40px" id="ui-id-8" style="border-radius: 0px; border-color: rgb(78, 78, 78); border-style: none; border-width: 1px !important;"></a>
-                        </div>
-                        <!-- end logo -->
-                        <!-- social elements -->
-                        <div class="col-md-9 col-sm-8 col-xs-5 position-inherit xs-no-padding-left">
-                            <div class="social float-right text-white">
-                                <a href="https://github.com/magirenko"><i class="fa tz-icon-color fa-github" id="ui-id-9" style="color: rgb(255, 255, 255); font-size: 25px; background-color: rgba(0, 0, 0, 0);"></i></a>
-                                <a href="https://x.com/magirenko"><i class="fa tz-icon-color fa-twitter" id="ui-id-10" style="color: rgb(255, 255, 255); font-size: 25px; background-color: rgba(0, 0, 0, 0);"></i></a>
-                                <a href="https://www.youtube.com/@Magirenko"><i class="fa tz-icon-color fa-youtube-play" id="ui-id-11" style="color: rgb(255, 255, 255); font-size: 25px; background-color: rgba(0, 0, 0, 0);"></i></a>
-                            </div>
-                        </div>
-                        <!-- end social elements -->
-                    </div>
-                </div>
-            </nav>                
-        </header><section class="padding-110px-tb xs-padding-60px-tb bg-dark-blue builder-bg border-none" id="title-section2" style="padding: 110px 0px; border-color: #101010; background-color: #101010 !important;">
-                <div class="container">
-                    <div class="row">
-                        <!-- section title -->
-                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                            <h2 id="title" class="section-title-large sm-section-title-medium text-white alt-font margin-five-bottom xs-margin-fifteen-bottom tz-text">Cargando...</h2>
-                            <img src="img.jpg">
-                            <div id="desc" class="text-blue-gray text-medium width-60 margin-lr-auto md-width-70 sm-width-100 tz-text">Cargando...</div>
-                        </div>
-                        <!-- end section title -->
-                    </div>                    
-                </div>
-            </section><section class="bg-white builder-bg padding-110px-tb xs-padding-60px-tb" id="portfolios-section6" style="background-color:#101010 !important;padding-top:110px;padding-bottom:110px;padding-left:0px;padding-right:0px;border-color:rgb(112, 112, 112) rgb(112, 112, 112) rgb(236, 236, 236);border-bottom:0px;" src="">
-                <div class="container">
-                    <div class="row">
-                        <!-- section title -->
-                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                            <h2 class="section-title-large sm-section-title-medium xs-section-title-large text-dark-gray font-weight-600 alt-font margin-three-bottom xs-margin-fifteen-bottom tz-text" id="tz-slider-text244" style="color:#ffffff !important;background-color:rgba(0, 0, 0, 0);font-size:35px;font-weight:600;font-family:Segoe Pro !important;text-transform:none;border-radius:0px;" src="">más noticias y novedades</h2>
-                            <div class="text-medium width-60 margin-lr-auto md-width-70 sm-width-100 tz-text margin-thirteen-bottom xs-margin-nineteen-bottom" id="tz-slider-text245" style="color:rgb(255, 255, 255) !important;background-color:rgba(0, 0, 0, 0);font-size:14px;font-weight:400;font-family:Segoe Pro !important;text-transform:none;border-radius:0px;" src=""></div>
-                        </div>
-                        <!-- end section title -->
-                    </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="work-4col wide work-with-title-light">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="overflow-hidden grid-gallery">
-                                    <div class="tab-content">
-                                        <ul class="masonry-items grid work-gallery grid" id="Notices">
-                                            <!-- portfolio item -->
-                                            <li class="xs-no-padding" id="NoticeTemplate" style="position: absolute; left: 0px; top: 0px;">
-                                                <figure>
-                                                    <div class="gallery-img">
-                                                        <a href="noticias/0" title="" target="_blank"><img src="noticias/0/img.jpg" id="tz-bg-117" data-img-size="(W)800px X (H)650px" alt=""></a>
-                                                    </div>
-                                                    <figcaption>
-                                                        <h3 class="text-medium alt-font"><a href="noticias/0" class="text-dark-gray tz-text" id="tz-slider-text260">Title</a></h3>
-                                                    </figcaption>
-                                                </figure>
-                                            </li>
-                                            <!-- end portfolio item -->
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section><footer id="footer-section12" class="bg-dark-blue builder-bg padding-60px-tb xs-padding-40px-tb footer-style4" style="padding-left: 0px; padding-right: 0px; border-color: rgb(112, 112, 112); background-color: rgb(31, 31, 31) !important; padding-top: 30px !important; padding-bottom: 30px !important;">
-                <div class="container">
-                    <div class="row equalize sm-equalize-auto">
-                        <!-- logo -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 sm-text-left xs-text-center sm-margin-eight-bottom xs-margin-nine-bottom display-table" style="height: 77px;">
-                            <div class="display-table-cell-vertical-middle">
-                                <a href="/home" class="inner-link"><img src="/images/magirenko_logo_64px.png" data-img-size="(W)163px X (H)40px" alt="" id="ui-id-12" style="border-radius: 0px; border-color: rgb(78, 78, 78); border-style: none; border-width: 1px !important;"></a>
-                            </div>
-                        </div>
-                        <!-- end logo -->
-                        <div class="col-lg-6 col-md-5 col-sm-6 col-xs-12 text-center sm-margin-eight-bottom xs-margin-nine-bottom xs-text-center display-table" style="height: 77px;">
-                            <div class="display-table-cell-vertical-middle">
-                                <span class="tz-text text-blue-gray" style="color: rgb(145, 148, 153); background-color: rgba(0, 0, 0, 0); font-weight: 400; text-transform: none; border-radius: 0px; font-size: 17px !important; font-family: &quot;Segoe Pro&quot; !important;" id="ui-id-7">© Magirenko Technologies 2023-2025</span>
-                            </div>
-                        </div>
-                        <!-- social elements -->
-                        <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 text-right sm-text-center display-table" style="height: 77px;">
-                            <div class="social icon-extra-small display-table-cell-vertical-middle">
-                                <a href="https://x.com/magirenko" class="margin-sixteen-right">
-                                    <i class="fa tz-icon-color text-white fa-twitter" id="ui-id-9" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); font-size: 25px !important;"></i>
-                                </a>
-                                <a href="https://github.com/magirenko" class="margin-sixteen-right">
-                                    <i class="fa tz-icon-color text-white fa-github" id="ui-id-7" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); font-size: 25px !important;"></i>
-                                </a>
-                                <a href="https://www.youtube.com/@Magirenko" class="margin-sixteen-right">
-                                    <i class="fa tz-icon-color text-white fa-youtube-play" id="ui-id-8" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); font-size: 25px !important;"></i>
-                                </a>
-                            </div>
-                        </div>                            
-                        <!-- end social elements -->
-                    </div>
-                </div>
-            </footer></div><!-- /#page -->
-
-
-        <!-- javascript libraries -->
-        <script type="text/javascript" src="/js/jquery.min.js"></script>
-        <script type="text/javascript" src="/js/jquery.appear.js"></script>
-        <script type="text/javascript" src="/js/smooth-scroll.js"></script>
-        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-        <!-- wow animation -->
-        <script type="text/javascript" src="/js/wow.min.js"></script>
-        <!-- owl carousel -->
-        <script type="text/javascript" src="/js/owl.carousel.min.js"></script>        
-        <!-- images loaded -->
-        <script type="text/javascript" src="/js/imagesloaded.pkgd.min.js"></script>
-        <!-- isotope -->
-        <script type="text/javascript" src="/js/jquery.isotope.min.js"></script> 
-        <!-- magnific popup -->
-        <script type="text/javascript" src="/js/jquery.magnific-popup.min.js"></script>
-        <!-- navigation -->
-        <script type="text/javascript" src="/js/jquery.nav.js"></script>
-        <!-- equalize -->
-        <script type="text/javascript" src="/js/equalize.min.js"></script>
-        <!-- fit videos -->
-        <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-        <!-- number counter -->
-        <script type="text/javascript" src="/js/jquery.countTo.js"></script>
-        <!-- time counter  -->
-        <script type="text/javascript" src="/js/counter.js"></script>
-        <!-- twitter Fetcher  -->
-        <script type="text/javascript" src="/js/twitterFetcher_min.js"></script>
-        <!-- main -->
-        <script type="text/javascript" src="/js/main.js"></script>
-    
-
-</body></html>
+    </body></html>
