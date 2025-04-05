@@ -54,32 +54,36 @@
     <style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style>
     <script>
        document.addEventListener("DOMContentLoaded", (event) => {
+            var type = "noticias";
             for (let i = 0; i < 8; i++) {
+                var dirurl = "https://data.magirenko.com/" + type + "/" + i.toString() + "/";
+
                 var existencereq = new XMLHttpRequest();
-            var loopbreak = false;
-          existencereq.open('HEAD', '/noticias/' + i.toString() + '/index.html', false);
-          existencereq.send();
-          console.log('existence status: ' + existencereq.status.toString());
-          if (existencereq.status != 404) {
+                var loopbreak = false;
+                existencereq.open('HEAD', dirurl + "data.json", false);
+                existencereq.send();
+                console.log('existence status: ' + existencereq.status.toString());
+                if (existencereq.status != 404) {
                     console.log(i);
-        let clone = document.getElementById('NoticeTemplate').cloneNode(true);
-       clone.id = i.toString();
-       clone.href = '/noticias/' + i.toString();
-       console.log('id: ' + clone.id);
-       clone.children[0].children[0].children[0].children[0].src = '/noticias/' + i.toString() + '/img.jpg';
-       clone.children[0].children[0].children[0].href = '/noticias/' + i.toString();
-       clone.children[0].children[1].children[0].children[0].href = '/noticias/' + i.toString();
-       clone.style = 'position: relative; left: ' + ((i * 550) % 1650).toString() + 'px; top: ' + (Math.floor(i / 3) * 550).toString() + 'px;';
-       var request = new XMLHttpRequest();
-       request.open("GET", '/noticias/' + i.toString() + '/title', false);
-       request.send();
-        if (request.status == 200) {
-         clone.children[0].children[1].children[0].children[0].innerHTML = request.responseText;
-       } else {
-         clone.children[0].children[1].children[0].children[0].innerHTML = '?';
-       }
-       console.log('request status: ' + request.status);
-       document.getElementById('Notices').appendChild(clone);
+                    let clone = document.getElementById('NoticeTemplate').cloneNode(true);
+                    clone.id = i.toString();
+                    clone.href = "/noticia?id=" + i.toString();;
+                    console.log('id: ' + clone.id);
+                    clone.children[0].children[0].children[0].children[0].src = dirurl + 'img.jpg';
+                    clone.children[0].children[0].children[0].href = "/noticia?id=" + i.toString();
+                    clone.children[0].children[1].children[0].children[0].href = "/noticia?id=" + i.toString();
+                    clone.style = 'position: relative; left: ' + ((i * 550) % 1650).toString() + 'px; top: ' + (Math.floor(i / 3) * 550).toString() + 'px;';
+                    var request = new XMLHttpRequest();
+                    request.open("GET", dirurl + 'data.json', false);
+                    request.send();
+                    var json = JSON.parse(request.responseText);
+                    if (request.status == 200) {
+                        clone.children[0].children[1].children[0].children[0].innerHTML = json.data.title;
+                    } else {
+                        clone.children[0].children[1].children[0].children[0].innerHTML = '?';
+                    }
+                    console.log('request status: ' + request.status);
+                    document.getElementById('Notices').appendChild(clone);
                 } else {
                     loopbreak = true;
                 }
@@ -87,10 +91,10 @@
                     break;
                 }
             }
-        document.getElementById("NoticeTemplate").remove();
-       });
+            document.getElementById("NoticeTemplate").remove();
+        });
     </script></head>
-    <body style="color: white; background-color: rgb(27, 27, 27); font-family: 'Segoe UI';">
+    <body style="color: white; background-color: rgb(27, 27, 27); font-family: 'Segoe Pro';">
 
         <div id="page" class="page"><div id="slider-section1">                
                 <section id="home1" class="no-padding slider-style1 border-none">
@@ -174,7 +178,8 @@
                         </div>
                     </div>
                 </div>
-            </section></iframe><!-- footer section -->
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center"><a class="btn btn-large xs-btn-small bg-white text-white propClone no-margin-tb xs-margin-five-bottom" href="/noticias/" id="tz-slider-lnk1" style="color:rgb(40, 40, 40);background-color:rgba(255, 255, 255, 0);border-color:rgba(0, 0, 0, 0);font-size:16px;font-weight:500;font-family:Segoe Pro !important;text-transform:none;border-radius:4px;">Mas Noticias<i class="fa icon-extra-small tz-icon-color fa-angle-right" id="tz-icon-4"></i></a></div>
+            </section><!-- footer section -->
             
             <!-- end footer --></div><!-- /#page -->
 
