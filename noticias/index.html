@@ -1,0 +1,249 @@
+<html prefix="og: https://ogp.me/ns#">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1">
+    <!-- title -->
+    <title>Magirenko - Noticias</title>
+    <meta name="description" content="¡Acá verás todas las noticias de Magirenko!">
+    <meta name="keywords" content="Tecnología, empresa, software, Magirenko, MagicM, Migue Magic Studios, Noticias">
+    <meta name="author" content="Magirenko">
+    <meta property="og:title" content="Magirenko - Noticias" />
+    <meta property="og:description" content="¡Acá verás todas las noticias de Magirenko!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://assets.magirenko.com/images/site.jpg" />
+    <script id="header_and_footer" src="https://assets.magirenko.com/js/header_and_footer.js"></script>
+    <style>
+        .page {
+            padding: 0px;
+            background-color: black;
+            color: white;
+            font-size: 25px;
+        }
+
+        .header-style14 {
+            position: fixed;
+            width: 100%;
+            z-index: 32767;
+        }
+    </style>
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="https://assets.magirenko.com/images/icon/favicon.png">
+    <!-- animation -->
+    <link rel="stylesheet" href="https://assets.magirenko.com/css/animate.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://assets.magirenko.com/css/bootstrap.min.css">
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="https://assets.magirenko.com/css/font-awesome.min.css">
+    <!-- themify-icons -->
+    <link rel="stylesheet" href="https://assets.magirenko.com/css/themify-icons.css">
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="https://assets.magirenko.com/css/owl.transitions.css">
+    <link rel="stylesheet" href="https://assets.magirenko.com/css/owl.carousel.css">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="https://assets.magirenko.com/css/magnific-popup.css">
+    <!-- base -->
+    <link rel="stylesheet" href="https://assets.magirenko.com/css/base.css">
+    <!-- elements -->
+    <link rel="stylesheet" href="https://assets.magirenko.com/css/elements.css">
+    <!-- responsive -->
+    <link rel="stylesheet" href="https://assets.magirenko.com/css/responsive.css">
+    <!--[if IE]>
+            <script src="https://assets.magirenko.com/js/html5shiv.min.js"></script>
+        <![endif]-->
+
+    <style id="fit-vids-style">
+        .fluid-width-video-wrapper {
+            width: 100%;
+            position: relative;
+            padding: 0;
+        }
+
+        .fluid-width-video-wrapper iframe,
+        .fluid-width-video-wrapper object,
+        .fluid-width-video-wrapper embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+        setTimeout(() => {
+            var type = "noticias";
+            var i = 0;
+
+            let temp = document.getElementById('NoticeTemplate');
+            temp.id = '0';
+            temp.href = "/noticia?id=0";
+            console.log('id: ' + temp.id);
+            temp.children[0].children[0].children[0].children[0].src = "https://data.magirenko.com/" + type + "/0/img.jpg";
+            temp.children[0].children[0].children[0].href = "/noticia?id=0";
+            temp.children[0].children[1].children[0].children[0].href = "/noticia?id=0";
+            var request = new XMLHttpRequest();
+            request.open("GET", "https://data.magirenko.com/" + type + "/0/data.json", false);
+            request.send();
+            var json = JSON.parse(request.responseText);
+            if (request.status == 200) {
+                temp.children[0].children[1].children[0].children[0].innerHTML = json.data.title;
+                temp.children[0].children[1].children[1].innerHTML = "Creado el: " + json.data.creationdate;
+                temp.children[0].children[1].children[2].innerHTML = "Creado por: " + json.data.author;
+            } else {
+                temp.children[0].children[1].children[0].children[0].innerHTML = '?';
+                temp.children[0].children[1].children[1].innerHTML = '?';
+                temp.children[0].children[1].children[2].innerHTML = '?';
+            }
+            for (let i = 0; i < document.body.clientWidth / 120; i++) {
+                event();
+            }
+
+            function event() {
+                var dirurl = "https://data.magirenko.com/" + type + "/" + i.toString() + "/";
+                var existencereq = new XMLHttpRequest();
+                var loopbreak = false;
+                existencereq.open('HEAD', dirurl + "data.json", false);
+                existencereq.send();
+                console.log('existence status: ' + existencereq.status.toString());
+                if (existencereq.status != 404) {
+                    console.log(i);
+                    let clone = document.getElementById('0').cloneNode(true);
+                    clone.id = i.toString();
+                    clone.style = 'position: relative;';
+                    clone.href = "/noticia?id=" + i.toString();
+                    console.log('id: ' + clone.id);
+                    clone.children[0].children[0].children[0].children[0].src = dirurl + 'img.jpg';
+                    clone.children[0].children[0].children[0].href = "/noticia?id=" + i.toString();
+                    clone.children[0].children[1].children[0].children[0].href = "/noticia?id=" + i.toString();
+                    var request = new XMLHttpRequest();
+                    request.open("GET", dirurl + 'data.json', false);
+                    request.send();
+                    var json = JSON.parse(request.responseText);
+                    if (request.status == 200) {
+                        clone.children[0].children[1].children[0].children[0].innerHTML = json.data.title;
+                        clone.children[0].children[1].children[1].innerHTML = "Creado el: " + json.data.creationdate;
+                        clone.children[0].children[1].children[2].innerHTML = "Creado por: " + json.data.author;
+                    } else {
+                        clone.children[0].children[1].children[0].children[0].innerHTML = '?';
+                        clone.children[0].children[1].children[1].innerHTML = '?';
+                        clone.children[0].children[1].children[2].innerHTML = '?';
+                    }
+
+                    console.log('request status: ' + request.status);
+                    document.getElementById('Notices').appendChild(clone);
+                } else {
+                    loopbreak = true;
+                }
+                if (loopbreak == true) {
+                    document.removeEventListener("scroll", event);
+                }
+                i++;
+            }
+            function eventWithConditions() {
+                if (window.scrollY > (Math.floor(i / (document.body.clientWidth / (document.body.clientWidth / 4))) * (document.body.clientWidth / (document.body.clientWidth / 480))) / 1.2) {
+                    event();
+                }
+            }
+            document.addEventListener("scroll", eventWithConditions);
+        }, 250);
+    </script>
+</head>
+
+<body style="color: white; background-color: rgb(27, 27, 27); font-family: 'Segoe Pro';">
+
+    <div id="page" class="page">
+        <section class="bg-white builder-bg padding-110px-tb xs-padding-60px-tb" id="portfolios-section6"
+            style="background-color:#101010 !important;padding-top:300px !important;padding-bottom:500px !important;padding-left:0px;padding-right:0px;border-color:rgb(112, 112, 112) rgb(112, 112, 112) rgb(236, 236, 236);border-bottom:0px;"
+            src="">
+            <div class="container">
+                <div class="row">
+                    <!-- section title -->
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <h2 class="section-title-large sm-section-title-medium xs-section-title-large text-dark-gray font-weight-600 alt-font margin-three-bottom xs-margin-fifteen-bottom tz-text"
+                            id="tz-slider-text244"
+                            style="color:#ffffff !important;background-color:rgba(0, 0, 0, 0);font-size:35px;font-weight:600;font-family:Segoe Pro !important;text-transform:none;border-radius:0px;"
+                            src="">Noticias y novedades</h2>
+                        <div class="text-medium width-60 margin-lr-auto md-width-70 sm-width-100 tz-text margin-thirteen-bottom xs-margin-nineteen-bottom"
+                            id="tz-slider-text245"
+                            style="color:rgb(255, 255, 255) !important;background-color:rgba(0, 0, 0, 0);font-size:14px;font-weight:400;font-family:Segoe Pro !important;text-transform:none;border-radius:0px;"
+                            src="">Aca verás todas las noticias y novedades de nosotros y de nuestro software.</div>
+                    </div>
+                    <!-- end section title -->
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="work-4col wide work-with-title-light">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="overflow-hidden grid-gallery">
+                                <div class="tab-content">
+                                    <ul class="masonry-items grid work-gallery grid" id="Notices">
+                                        <!-- portfolio item -->
+                                        <li class="xs-no-padding" id="NoticeTemplate"
+                                            style="position: relative; left: 0px; top: 0px; animation-name: slideInUp, fadeInUp; animation-duration: 500ms;">
+                                            <figure>
+                                                <div class="gallery-img">
+                                                    <a href="/noticias/0" title="" target="_blank"><img
+                                                            src="/noticias/0/img.jpg" id="tz-bg-117"
+                                                            data-img-size="(W)800px X (H)650px" alt=""></a>
+                                                </div>
+                                                <figcaption>
+                                                    <h3 class="text-medium alt-font"><a href="/noticias/0"
+                                                            class="text-dark-gray tz-text"
+                                                            id="tz-slider-text260">Title</a></h3>
+                                                    <a class="text-dark-gray tz-text"
+                                                        style="font-size: xx-small;">Creation Date</a>
+                                                    <a class="text-dark-gray tz-text"
+                                                        style="font-size: xx-small;">Author</a>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <!-- end portfolio item -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- footer section -->
+
+        <!-- end footer -->
+    </div><!-- /#page -->
+
+
+    <!-- javascript libraries -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.magirenko.com/js/jquery.appear.js"></script>
+    <script type="text/javascript" src="https://assets.magirenko.com/js/smooth-scroll.js"></script>
+    <script type="text/javascript" src="https://assets.magirenko.com/js/bootstrap.min.js"></script>
+    <!-- wow animation -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/wow.min.js"></script>
+    <!-- owl carousel -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/owl.carousel.min.js"></script>
+    <!-- images loaded -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/imagesloaded.pkgd.min.js"></script>
+    <!-- isotope -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/jquery.isotope.min.js"></script>
+    <!-- magnific popup -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/jquery.magnific-popup.min.js"></script>
+    <!-- navigation -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/jquery.nav.js"></script>
+    <!-- equalize -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/equalize.min.js"></script>
+    <!-- fit videos -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/jquery.fitvids.js"></script>
+    <!-- number counter -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/jquery.countTo.js"></script>
+    <!-- time counter  -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/counter.js"></script>
+    <!-- twitter Fetcher  -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/twitterFetcher_min.js"></script>
+    <!-- main -->
+    <script type="text/javascript" src="https://assets.magirenko.com/js/main.js"></script>
+
+
+</body>
+
+</html>
